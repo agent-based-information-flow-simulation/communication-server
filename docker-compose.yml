@@ -22,6 +22,8 @@ services:
 
   load-balancer:
     container_name: load-balancer
+    expose: 
+      - 5222
     image: haproxy:2.4.8-alpine3.14
     networks:
       - load-balancer-network
@@ -42,7 +44,16 @@ services:
       - db-network
     ports:
       - "5433:80"
-    restart: always
+    restart: "no"
+
+  tsung-benchmark:
+    container_name: tsung-benchmark
+    build: ./tsung-benchmark
+    networks:
+      - load-balancer-network
+    ports:
+      - "8091:8091"
+    restart: "no"
     
   xmpp-server-0:
     build: ./xmpp-server
