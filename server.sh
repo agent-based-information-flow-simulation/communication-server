@@ -100,7 +100,7 @@ case "${1}" in
         ;;
 
     pgadmin)
-        pgadmin
+        pgadmin "${2}"
         ;;
 
     benchmark)
