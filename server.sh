@@ -5,7 +5,7 @@ function usage() {
     echo "       start: (build and) start the server"
     echo "       stop: stop the server"
     echo "       restart: clean and start"
-    echo "       clean: stop the server and remove all docker data"
+    echo "       clean [--force]: stop the server and remove all docker data"
     echo "       logs [SERVICE]: print logs from SERVICE (if SERVICE is not provided, then print logs from all services)"
     echo "       stats: print stats from all services"
     echo "       pgadmin {start|stop}: start/stop pgadmin"
@@ -31,7 +31,7 @@ function restart() {
 
 function clean() {
     docker-compose down --volumes --remove-orphans --rmi all && \
-    docker system prune --all --volumes
+    docker system prune --all --volumes "${1}"
 }
 
 function logs () {
@@ -87,7 +87,7 @@ case "${1}" in
         ;;
 
     clean)
-        clean
+        clean "${2}"
         ;;
 
     logs)
