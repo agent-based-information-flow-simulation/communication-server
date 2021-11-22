@@ -20,6 +20,7 @@ function start() {
     docker-compose up --detach xmpp-server-2 && \
     docker-compose up --detach xmpp-server-3 && \
     docker-compose up --detach load-balancer
+    echo "admin panels are running on http://localhost:808[0-3]"
 }
 
 function stop() {
