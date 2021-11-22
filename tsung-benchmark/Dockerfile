@@ -16,4 +16,4 @@ COPY tsung.xml /tsung.xml
 
 ENTRYPOINT ["/bin/bash"]
 
-# CMD [ "tsung", "-f", "/tsung.xml", "start" ]
+CMD [ "tsung", "-f", "/tsung.xml", "start" ]
