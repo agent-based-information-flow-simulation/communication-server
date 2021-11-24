@@ -7,6 +7,7 @@ debug = [ 'server' ]
 dataSource () {
     default () {
         uri = 'jdbc:postgresql://db/tigasedb?user=admin&password=admin&useSSL=false'
+        'pool-size' = '20'
     }
 }
 bosh (active: false) {}

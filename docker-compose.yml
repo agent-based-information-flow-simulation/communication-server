@@ -5,7 +5,7 @@ services:
     command: 
       - "postgres"
       - "-c"
-      - "max_connections=800"
+      - "max_connections=60"
       - "-c"
       - "shared_buffers=2GB"
     container_name: db
