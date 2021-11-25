@@ -58,9 +58,6 @@ services:
   xmpp-server-0:
     build: ./xmpp-server
     container_name: xmpp-server-0
-    environment:
-      - DB_ROOT_USER=postgres
-      - DB_ROOT_PASS=postgres
     expose:
       - 5222
       - 5277
@@ -75,9 +72,6 @@ services:
   xmpp-server-1:
     build: ./xmpp-server
     container_name: xmpp-server-1
-    environment:
-      - DB_ROOT_USER=postgres
-      - DB_ROOT_PASS=postgres
     expose: 
       - 5222
       - 5277
