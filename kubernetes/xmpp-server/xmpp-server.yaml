@@ -15,7 +15,7 @@ spec:
       labels:
         app: xmpp-server
     spec:
-      # dnsPolicy: "None"  <- potential fix for tigase cluster connection (but it didn't work :>)
+      # dnsPolicy: "None"  # <- potential fix for tigase cluster connection (but it didn't work :>)
       containers:
         - name: xmpp-server
           image: madpeh/xmpp-server
@@ -113,14 +113,14 @@ metadata:
 spec:
   selector:
     app: xmpp-server
-  # type: LoadBalancer  <- enabling it fixed the issue with tigase cluster (then it could be disabled, ahhhhh...)
-  # clusterIP: "None"   <- don't use this
+  type: LoadBalancer  # <- enabling it fixed the issue with tigase cluster (then it could be disabled, ahhhhh...)
+  # clusterIP: "None"   # <- don't use this
   ports:
     - protocol: TCP
       name: xmpp
       port: 5222
       targetPort: 5222
-    # - protocol: TCP  <- not required
+    # - protocol: TCP  # <- not required
     #   name: cluster
     #   port: 5277
     #   targetPort: 5277
