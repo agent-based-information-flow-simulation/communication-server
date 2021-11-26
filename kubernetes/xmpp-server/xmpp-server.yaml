@@ -120,10 +120,10 @@ spec:
       name: xmpp
       port: 5222
       targetPort: 5222
-    - protocol: TCP
-      name: cluster
-      port: 5277
-      targetPort: 5277
+    # - protocol: TCP  <- not required
+    #   name: cluster
+    #   port: 5277
+    #   targetPort: 5277
     - protocol: TCP
       name: admin-panel
       port: 8080
