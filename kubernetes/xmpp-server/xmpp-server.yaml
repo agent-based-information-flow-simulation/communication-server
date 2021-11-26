@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: xmpp-server
+  labels:
+    app: xmpp-server
+spec:
+  replicas: 2
+  serviceName: xmpp-server
+  selector:
+    matchLabels:
+      app: xmpp-server
+  template:
+    metadata:
+      labels:
+        app: xmpp-server
+    spec:
+      # dnsPolicy: "None"  <- potential fix for tigase cluster connection (but it didn't work :>)
+      containers:
+        - name: xmpp-server
+          image: madpeh/xmpp-server
+          ports:
+          - containerPort: 5222
+          - containerPort: 5277
+          - containerPort: 8080
+          env:
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: db-name
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configmap
+                  key: database-url
+            - name: DB_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: db-user-name
+            - name: DB_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: db-user-password
+            - name: DB_ROOT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: postgres-user
+            - name: DB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: postgres-password
+            - name: ADMIN_JID
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: admin-jid
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: admin-password
+            - name: DB_POOL_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  name: xmpp-server-configmap
+                  key: db-pool-size
+            - name: VIRTUAL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: xmpp-server-configmap
+                  key: virtual-host
+            - name: HTTP_ADMIN_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: http-admin-name
+            - name: HTTP_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: xmpp-server-secret
+                  key: http-admin-password
+            - name: SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: xmpp-server-configmap
+                  key: xmpp-server-url
+            - name: MAX_CLUSTER_NODES
+              valueFrom:
+                configMapKeyRef:
+                  name: xmpp-server-configmap
+                  key: max-cluster-nodes
+          resources:
+            requests:
+              cpu: "2"
+              memory: "2Gi"
+            limits:
+              cpu: "4"
+              memory: "4Gi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: xmpp-server
+  labels:
+    app: xmpp-server
+spec:
+  selector:
+    app: xmpp-server
+  # type: LoadBalancer  <- enabling it fixed the issue with tigase cluster (then it could be disabled, ahhhhh...)
+  # clusterIP: "None"   <- don't use this
+  ports:
+    - protocol: TCP
+      name: xmpp
+      port: 5222
+      targetPort: 5222
+    - protocol: TCP
+      name: cluster
+      port: 5277
+      targetPort: 5277
+    - protocol: TCP
+      name: admin-panel
+      port: 8080
+      targetPort: 8080
