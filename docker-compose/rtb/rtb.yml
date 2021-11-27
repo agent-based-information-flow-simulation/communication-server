@@ -1,0 +1,43 @@
+###              RTB configuration file
+###
+### The parameters used in this configuration file are explained at
+###
+###  https://github.com/processone/rtb/blob/master/README.md
+###
+### The configuration file is written in YAML
+###
+### *******************************************************
+### *******           !!! WARNING !!!               *******
+### *******     YAML IS INDENTATION SENSITIVE       *******
+### ******* MAKE SURE YOU INDENT SECTIONS CORRECTLY *******
+### *******************************************************
+###
+
+### Mandatory options: common for all scenarios
+scenario: xmpp
+interval: 100
+capacity: 1
+certfile: cert.pem
+
+### Mandatory options for XMPP scenario
+jid: 0fakenews_%@localhost
+password: asdasdsdgghtr434bdsdg
+
+### Server addresses
+### Optional, but highly recommended to set
+servers:
+  - tcp://load-balancer:5222
+###   - tcp://192.168.1.1:5222
+
+### An HTTP port for the statistics web interface
+### www_port: 8080
+
+### Local Variables:
+### mode: yaml
+### End:
+### vim: set filetype=yaml tabstop=8
+
+starttls: true
+debug: false
+sasl_mechanisms:
+  - PLAIN

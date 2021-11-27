@@ -2,5 +2,4 @@ tigase-server*
 docker-server*
 bzm*
 setup*
-rtb
 server.sh
