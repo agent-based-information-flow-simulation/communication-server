@@ -52,36 +52,11 @@ services:
       - "5222:5222"
       - "5555:5555"
 
-  # pgadmin:
-  #   # container_name: pgadmin
-  #   image: dpage/pgadmin4:6.2
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@admin.org
-  #     PGADMIN_DEFAULT_PASSWORD: admin
-  #     PGADMIN_CONFIG_SERVER_MODE: 'False'
-  #   networks:
-  #     - db-network
-  #   ports:
-  #     - "5433:80"
-  #   # restart: "no"
-
-  # tsung-benchmark:
-  #   # build: ./tsung-benchmark
-  #   # container_name: tsung-benchmark
-  #   image: madpeh/tsung-benchmark-docker-swarm
-  #   networks:
-  #     - load-balancer-network
-  #   ports:
-  #     - "3000:8091"
-  #   # restart: "no"
-    
   xmpp-server:
     image: madpeh/xmpp-server-docker-swarm
     networks:
       - db-network
       - load-balancer-network
-    ports:
-      - "8080:8080"
 
 networks:
   db-network:
