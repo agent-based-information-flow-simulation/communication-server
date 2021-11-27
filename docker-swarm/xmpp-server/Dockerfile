@@ -17,8 +17,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ulimit -n 100000
 
 COPY . /tigase/
-# COPY server-config/scripts /tigase/scripts
 
 ENTRYPOINT [ "/tigase/scripts/run.sh" ]
-# WORKDIR /tigase
-# ENTRYPOINT ["/bin/bash"]
