@@ -2,9 +2,9 @@
 
 function usage() {
     echo "Usage: $0 {start|stop|restart|clean|logs|stats|pgadmin|benchmark}"
-    echo "       start: (build and) start the server"
+    echo "       start N: (build and) start the server with N instances of xmpp servers"
     echo "       stop: stop the server"
-    echo "       restart: clean and start"
+    echo "       restart N: clean and start with N instances of xmpp servers"
     echo "       clean: stop the server and remove all docker data"
     echo "       logs [SERVICE]: print logs from SERVICE (if SERVICE is not provided, then print logs from all services)"
     echo "       stats: print stats from all services"
@@ -16,7 +16,7 @@ function usage() {
 function start() {
     docker-compose up --detach load-balancer && \
     docker-compose up --detach db && \
-    docker-compose up --detach --scale xmpp-server=2 xmpp-server
+    docker-compose up --detach --scale xmpp-server="${1}" xmpp-server
 }
 
 function stop() {
@@ -24,7 +24,7 @@ function stop() {
 }
 
 function restart() {
-    clean && start
+    clean && start "${1}"
 }
 
 function clean() {
@@ -33,7 +33,7 @@ function clean() {
 }
 
 function logs () {
-    docker-compose logs --follow --tail="all" "${@}" 
+    docker-compose logs --tail="all" "${@}" 
 }
 
 function stats() {
@@ -73,7 +73,7 @@ function benchmark() {
 
 case "${1}" in
     start)
-        start
+        start "${2}"
         ;;
 
     stop)
@@ -81,7 +81,7 @@ case "${1}" in
         ;;
 
     restart)
-        restart
+        restart "${2}"
         ;;
 
     clean)
