@@ -18,9 +18,11 @@ version = r.get(GET_VERSION_URL, auth=(ENDPOINT_USER, ENDPOINT_PASSWORD)).json()
 retries = 0
 while retries < NUM_MAX_RETRIES:
     response = r.post(f'{ADD_SERVER_URL}{version}', auth=(ENDPOINT_USER, ENDPOINT_PASSWORD), json={
-        "address": IMAGE_HOSTNAME,
         "name": SERVER_NAME,
+        "address": IMAGE_HOSTNAME,
         "port": PORT,
+        "check": "enabled",
+        "init-addr": "last,libc,none"
     })
     if response.status_code == 202:
         print(f'Server {SERVER_NAME} added to load balancer')
