@@ -36,63 +36,52 @@ services:
       - "max_parallel_workers=4"
       - "-c"
       - "max_parallel_maintenance_workers=2"
-    container_name: db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    expose: 
-      - 5432
     image: postgres:13.5-alpine3.14
     networks:
       - db-network
-    restart: always
 
   load-balancer:
-    build: ./load-balancer
-    container_name: load-balancer
-    expose: 
-      - 5222
-      - 5555
+    image: madpeh/load-balancer-docker-swarm
     networks:
       - load-balancer-network
     ports:
       - "5222:5222"
       - "5555:5555"
-    restart: always
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:6.2
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.org
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    networks:
-      - db-network
-    ports:
-      - "5433:80"
-    restart: "no"
+  # pgadmin:
+  #   # container_name: pgadmin
+  #   image: dpage/pgadmin4:6.2
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.org
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #     PGADMIN_CONFIG_SERVER_MODE: 'False'
+  #   networks:
+  #     - db-network
+  #   ports:
+  #     - "5433:80"
+  #   # restart: "no"
 
-  tsung-benchmark:
-    build: ./tsung-benchmark
-    container_name: tsung-benchmark
-    networks:
-      - load-balancer-network
-    ports:
-      - "3000:8091"
-    restart: "no"
+  # tsung-benchmark:
+  #   # build: ./tsung-benchmark
+  #   # container_name: tsung-benchmark
+  #   image: madpeh/tsung-benchmark-docker-swarm
+  #   networks:
+  #     - load-balancer-network
+  #   ports:
+  #     - "3000:8091"
+  #   # restart: "no"
     
   xmpp-server:
-    build: ./xmpp-server
-    expose:
-      - 5222
-      - 5277
-    image: xmpp-server
+    image: madpeh/xmpp-server-docker-swarm
     networks:
       - db-network
       - load-balancer-network
-    restart: always
+    ports:
+      - "8080:8080"
 
 networks:
   db-network:
