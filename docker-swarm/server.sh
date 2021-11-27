@@ -53,13 +53,13 @@ function stats() {
 function benchmark() {
     case "${1}" in
         start)
-        # -d \
             docker run \
+                -d \
                 --rm \
-                -p 3000:8091 \
+                --network host \
                 --name tsung-benchmark \
                 madpeh/tsung-benchmark-docker-swarm && \
-            echo "benchmark is running on http://localhost:3000"
+            echo "benchmark is running on http://localhost:8091"
             ;;
         stop)
             docker stop tsung-benchmark
