@@ -51,7 +51,6 @@ services:
     image: postgres:13.5-alpine3.14
     networks:
       - db-network
-    
 
   load-balancer:
     deploy:
