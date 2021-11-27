@@ -23,8 +23,14 @@ function init() {
 }
 
 function start() {
-    docker stack deploy -c ./docker-compose.yml agents-sim && \
-    if [ ! -z "${1}" ]; then scale "${1}"; fi
+    if docker stack deploy -c ./docker-compose.yml agents-sim; then
+        if [ ! -z "${1}" ]; then scale "${1}"; fi
+    else
+        echo "failed to start the swarm cluster"
+        echo "if you see the following error:"
+        echo "failed to create service X: Error response from daemon: network Y not found"
+        echo "then restart docker daemon (i.e. sudo systemctl restart docker)"
+    fi
 }
 
 function scale() {
