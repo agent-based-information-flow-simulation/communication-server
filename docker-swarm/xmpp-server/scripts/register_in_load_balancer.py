@@ -25,6 +25,9 @@ while retries < NUM_MAX_RETRIES:
     if response.status_code == 202:
         print(f'Server {SERVER_NAME} added to load balancer')
         exit(0)
+    elif f'Server {SERVER_NAME} already exists in backend' in response.json()['message']:
+        print(f'Server {SERVER_NAME} is already registered in load balancer')
+        exit(0)
     else:
         pprint(response.json())
         version += 1
