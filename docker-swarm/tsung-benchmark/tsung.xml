@@ -14,15 +14,15 @@
     <load>
         <!-- connect users -->
         <arrivalphase phase="1" duration="15" unit="minute">
-            <users maxnumber="10000" interarrival="0.05" unit="second"></users>
+            <users maxnumber="8000" interarrival="0.05" unit="second"></users>
         </arrivalphase>
     </load>
 
     <options>
-        <option name="max_retries" value="5" />
+        <option name="max_retries" value="10" />
         <option name="rate_limit" value="4096"></option>
         <option name="seed" value="42"/>
-        <option type="ts_jabber" name="global_number" value="10000"></option>
+        <option type="ts_jabber" name="global_number" value="8000"></option>
         <option type="ts_jabber" name="userid_max" value="100000"></option>
         <option type="ts_jabber" name="domain" value="agents-sim.xyz"></option>
         <option type="ts_jabber" name="username" value="benchmark_user"></option>
