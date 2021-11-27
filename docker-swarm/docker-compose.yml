@@ -36,6 +36,14 @@ services:
       - "max_parallel_workers=4"
       - "-c"
       - "max_parallel_maintenance_workers=2"
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: "4G"
+        reservations:
+          cpus: "1"
+          memory: "512M"
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -43,8 +51,17 @@ services:
     image: postgres:13.5-alpine3.14
     networks:
       - db-network
+    
 
   load-balancer:
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: "1G"
+        reservations:
+          cpus: "2"
+          memory: "256M"
     image: madpeh/load-balancer-docker-swarm
     networks:
       - load-balancer-network
@@ -53,6 +70,14 @@ services:
       - "5555:5555"
 
   xmpp-server:
+    deploy:
+      resources:
+        limits:
+          cpus: "8"
+          memory: "8G"
+        reservations:
+          cpus: "8"
+          memory: "8G"
     image: madpeh/xmpp-server-docker-swarm
     networks:
       - db-network
