@@ -6,7 +6,7 @@ function usage() {
     echo "       start [N=1]: start the server with N instances of xmpp servers"
     echo "       scale N: scale the server to N instances of xmpp servers"
     echo "       stop: stop the server"
-    echo "       restart N: clean and start with N instances of xmpp servers"
+    echo "       restart [N=1]: clean and start with N instances of xmpp servers"
     echo "       clean: stop the server and remove all docker data"
     echo "       stats: print stats from all services"
     echo "       benchmark {start|stop}: start/stop benchmark"
@@ -19,7 +19,8 @@ function init() {
 }
 
 function start() {
-    docker stack deploy -c ./docker-compose.yml agents-sim
+    docker stack deploy -c ./docker-compose.yml agents-sim && \
+    if [ ! -z "${1}" ]; then scale "${1}"; fi
 }
 
 function scale() {
@@ -32,22 +33,13 @@ function stop() {
 }
 
 function restart() {
-    if [ -z "${1}" ]; then usage; fi
-    clean && start "${1}"
+    clean && init && start "${1}"
 }
 
 function clean() {
     stop
     docker swarm leave --force
     docker system prune --all --volumes
-}
-
-function logs () {
-    if [ -z "${1}" ];then
-        docker ps -q | xargs -L 1 docker logs --follow --tail="all"
-    else
-        docker logs --follow --tail="all" "${@}"
-    fi 
 }
 
 function stats() {
