@@ -35,9 +35,4 @@ s2s (active: false) {}
 ws2s (active: false) {}
 
 'cluster-mode' = true
-c2s {
-    'urn:xmpp:sm:3' {
-        'resumption-timeout' = 0
-    }
-}
 'hardened-mode' = relaxed
