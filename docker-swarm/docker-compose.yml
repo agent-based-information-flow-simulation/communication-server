@@ -51,6 +51,8 @@ services:
     image: postgres:13.5-alpine3.14
     networks:
       - db-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
   load-balancer:
     deploy:
@@ -92,4 +94,5 @@ networks:
   load-balancer-network:
 
 volumes:
+  db-data:
   load-balancer-data:
