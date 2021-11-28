@@ -27,6 +27,7 @@ sudo systemctl restart docker
 
 # run on the master node
 sudo ufw allow 5222/tcp
+sudo ufw allow 8080/tcp
 sudo ufw reload
 
 # clone repository
