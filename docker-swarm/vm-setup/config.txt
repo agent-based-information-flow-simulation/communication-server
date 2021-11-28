@@ -1,0 +1,44 @@
+# add user to sudoers
+su
+apt install sudo -y
+usermod -aG sudo user
+
+# install docker
+sudo apt update && sudo apt install curl -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# allow to run docker without sudo
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+# open required ports
+sudo apt update && apt install ufw -y
+sudo ufw enable
+sudo ufw allow 22/tcp
+sudo ufw allow 2376/tcp
+sudo ufw allow 2377/tcp
+sudo ufw allow 7946/tcp
+sudo ufw allow 7946/udp
+sudo ufw allow 4789/udp
+sudo ufw reload
+sudo systemctl restart docker
+
+# run on the master node
+sudo ufw allow 5222/tcp
+sudo ufw reload
+
+# clone repository
+sudo apt update && sudo apt install git -y
+git clone https://github.com/agent-based-information-flow-simulation/communication-server.git
+
+# enter the directory and run
+server.sh init
+
+# run the output of the command the on worker nodes
+docker swarm join --token TOKEN ADDR:PORT
+
+# start the server
+server.sh start
+
