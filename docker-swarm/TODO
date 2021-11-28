@@ -1,0 +1,4 @@
+- handle db crash
+- handle load balancer crash
+- add pgbouncer
+- add tigase admin panel to load balancer
