@@ -70,6 +70,8 @@ services:
     ports:
       - "5222:5222"
       - "8080:8080"
+    volumes:
+      - load-balancer-data:/usr/local/etc/haproxy
 
   xmpp-server:
     deploy:
@@ -88,3 +90,6 @@ services:
 networks:
   db-network:
   load-balancer-network:
+
+volumes:
+  load-balancer-data:
