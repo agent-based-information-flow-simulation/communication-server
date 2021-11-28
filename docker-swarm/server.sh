@@ -29,6 +29,8 @@ function init() {
 function start() {
     if docker stack deploy -c ./docker-compose.yml agents-sim; then
         if [ ! -z "${1}" ]; then scale "${1}"; fi
+        echo "XMPP can be accessed on port 5222"
+        echo "Admin panel can be accessed on port 8080"
     else
         echo "failed to start the server"
         echo "if you see the following error:"
