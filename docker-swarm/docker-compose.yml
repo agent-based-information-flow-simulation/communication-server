@@ -54,6 +54,9 @@ services:
 
   load-balancer:
     deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
       resources:
         limits:
           cpus: "4"
