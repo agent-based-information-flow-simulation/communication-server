@@ -17,10 +17,12 @@ function init() {
     if docker swarm init; then
         echo "ok"
         echo ""
-        echo "---------------------------------------------------------------------------------"
-        echo "Add the IP address of the master node (visible in the output above) to /etc/hosts"
+        echo "-------------------------------------------------------------------------------"
+        echo "Point the server's domain (agents-sim.xyz) to the IP address of the master node"
+        echo "For instance, add the IP address of the master node to /etc/hosts"
         echo "W.X.Y.Z agents-sim.xyz"
-        echo "---------------------------------------------------------------------------------"
+        echo "However, this step depends on the deployment method"
+        echo "-------------------------------------------------------------------------------"
     fi
 }
 
