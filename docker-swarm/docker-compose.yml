@@ -69,7 +69,6 @@ services:
       - load-balancer-network
     ports:
       - "5222:5222"
-      - "5555:5555"
 
   xmpp-server:
     deploy:
