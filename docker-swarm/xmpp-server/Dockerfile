@@ -13,8 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tar -xzf tigase-server-8.1.2-b10915-dist-max.tar.gz && \
     rm tigase-server-8.1.2-b10915-dist-max.tar.gz && \
     mv tigase-server-8.1.2-b10915 tigase && \
-    rm -r tigase/docs && \
-    ulimit -n 100000
+    rm -r tigase/docs
 
 COPY . /tigase/
 
