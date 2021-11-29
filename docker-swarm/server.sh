@@ -35,7 +35,7 @@ function start() {
         echo "failed to start the server"
         echo "if you see the following error:"
         echo "failed to create service X: Error response from daemon: network Y not found"
-        echo "then restart docker daemon (i.e. sudo systemctl restart docker)"
+        echo "then restart docker daemon (i.e. sudo systemctl restart docker) and run ./server.sh clean"
     fi
 }
 
