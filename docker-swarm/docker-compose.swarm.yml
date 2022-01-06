@@ -55,6 +55,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
   entrypoint:
+    build: ./entrypoint
     deploy:
       resources:
         limits:
@@ -74,6 +75,7 @@ services:
       - entrypoint-data:/usr/local/etc/haproxy
 
   xmpp-server:
+    build: ./xmpp-server
     deploy:
       resources:
         limits:
