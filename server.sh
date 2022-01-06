@@ -4,22 +4,22 @@ function usage() {
     echo "Usage: $0 {init|join|network|start|scale|stop|clean|stats|publish|benchmark}"
     echo "       init: initialize the swarm cluster"
     echo "       join TOKEN IP:PORT: join the swarm cluster"
-    echo "       network (REQUIRES SWARM MODE): create shared networks for the swarm mode"
-    echo "       start [-n <N=1>: N xmpp servers] [-d: dev mode (REQUIRES SWARM MODE) [-p: publish]]: start the server"
+    echo "       network (REQUIRES SWARM CLUSTER): create shared networks for the swarm cluster"
+    echo "       start [-n <N=1>: N xmpp servers] [-d: dev mode [-p: publish]] (REQUIRES SWARM CLUSTER): start the server"
     echo "       scale N: scale the server to N instances of xmpp servers"
     echo "       stop: stop the server"
     echo "       clean: stop the server and remove all docker data"
     echo "       stats: print stats from all services"
-    echo "       publish [-d: dev mode (REQUIRES SWARM MODE)]: publish the images to a registry"
+    echo "       publish [-d: dev mode (REQUIRES SWARM CLUSTER)]: publish the images to a registry"
     echo "       benchmark {start|stop|publish}: start/stop/publish benchmark"
     exit 1
 }
 
 function init() {
     if docker swarm init; then
-        echo "swarm mode initialized"
+        echo "swarm cluster initialized"
     else
-        echo "failed to initialize swarm mode"
+        echo "failed to initialize swarm cluster"
     fi
 }
 
@@ -33,9 +33,9 @@ function join() {
         usage
     fi
     if docker swarm join --token "$1" "$2"; then
-        echo "swarm mode joined"
+        echo "swarm cluster joined"
     else
-        echo "failed to join swarm mode"
+        echo "failed to join swarm cluster"
     fi
 }
 
