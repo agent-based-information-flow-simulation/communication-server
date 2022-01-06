@@ -5,7 +5,7 @@ import requests as r
 
 
 IMAGE_HOSTNAME = sys.argv[1]
-URL = 'http://load-balancer:5555/v2'
+URL = 'http://entrypoint:5555/v2'
 GET_VERSION_URL = f'{URL}/services/haproxy/configuration/backends'
 ENDPOINT_USER = 'admin'
 ENDPOINT_PASSWORD = 'admin'
@@ -26,17 +26,17 @@ def register(backend_name, port):
             "init-addr": "last,libc,none"
         })
         if response.status_code == 202:
-            print(f'Server {server_name} added to load balancer')
+            print(f'Server {server_name} added to haproxy')
             return
         elif f'Server {server_name} already exists in backend' in response.json()['message']:
-            print(f'Server {server_name} is already registered in load balancer backend {backend_name}')
+            print(f'Server {server_name} is already registered in haproxy backend {backend_name}')
             return
         else:
             pprint(response.json())
             version += 1
             retries += 1
             time.sleep(1)
-    print('Could not add server to load balancer backend {backend_name}')
+    print('Could not add server to haproxy backend {backend_name}')
     exit(1)
 
 
