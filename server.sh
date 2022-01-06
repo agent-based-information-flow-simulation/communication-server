@@ -80,7 +80,7 @@ function start() {
         echo "then restart docker daemon (i.e. sudo systemctl restart docker) and run ./server.sh clean"
         echo ""
         echo "if you see the following error:"
-        echo "network XXX is declared as external, but could not be found"
+        echo "network X is declared as external, but could not be found"
         echo "run the script with the network option to create the required networks"
     fi
 }
