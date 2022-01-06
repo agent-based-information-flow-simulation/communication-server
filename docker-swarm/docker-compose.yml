@@ -50,15 +50,12 @@ services:
       - POSTGRES_PASSWORD=postgres
     image: postgres:13.5-alpine3.14
     networks:
-      - db-network
+      - db-net
     volumes:
       - db-data:/var/lib/postgresql/data
 
-  load-balancer:
+  entrypoint:
     deploy:
-      placement:
-        constraints:
-          - "node.role==manager"
       resources:
         limits:
           cpus: "4"
@@ -66,14 +63,14 @@ services:
         reservations:
           cpus: "2"
           memory: "256M"
-    image: madpeh/load-balancer-docker-swarm
+    image: madpeh/communcation-server-entrypoint
     networks:
-      - load-balancer-network
+      - entrypoint-net
     ports:
       - "5222:5222"
       - "8080:8080"
     volumes:
-      - load-balancer-data:/usr/local/etc/haproxy
+      - entrypoint-data:/usr/local/etc/haproxy
 
   xmpp-server:
     deploy:
@@ -84,15 +81,15 @@ services:
         reservations:
           cpus: "8"
           memory: "8G"
-    image: madpeh/xmpp-server-docker-swarm
+    image: madpeh/communication-server-xmpp-server
     networks:
-      - db-network
-      - load-balancer-network
+      - db-net
+      - entrypoint-net
 
 networks:
-  db-network:
-  load-balancer-network:
+  db-net:
+  entrypoint-net:
 
 volumes:
   db-data:
-  load-balancer-data:
+  entrypoint-data:
