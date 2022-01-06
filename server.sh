@@ -109,6 +109,9 @@ function stats() {
 
 function services() {
     docker service ls
+    echo ""
+    echo "if you notice that some of the services are not up"
+    echo "then stop the server, publish the images, create the shared networks, and start the server again"
 }
 
 function publish() {
