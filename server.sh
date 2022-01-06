@@ -53,8 +53,8 @@ function start() {
     PUBLISH=0
     while getopts dn:p opt; do
         case $opt in
-            n) N=$OPTARG ;;
             d) DEV=1 ;;
+            n) N=$OPTARG ;;
             p) PUBLISH=1 ;;
             *) usage ;;
         esac
