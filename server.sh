@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage() {
-    echo "Usage: $0 {init|join|network|start|scale|stop|clean|stats|publish|benchmark}"
+    echo "Usage: $0 {init|join|network|start|scale|stop|clean|stats|services|publish|benchmark}"
     echo "       init: initialize the swarm cluster"
     echo "       join TOKEN IP:PORT: join the swarm cluster"
     echo "       network (REQUIRES SWARM CLUSTER): create shared networks for the swarm cluster"
@@ -107,6 +107,10 @@ function stats() {
     docker stats
 }
 
+function services() {
+    docker service ls
+}
+
 function publish() {
     local OPTIND
     DEV=0
@@ -163,6 +167,8 @@ case "${1}" in
     clean) clean ;;
 
     stats) stats ;;
+
+    services) services ;;
 
     publish) publish "${@:2}" ;;
 
