@@ -7,5 +7,5 @@
     -P admin \
     -R postgres \
     -A postgres \
-    -J admin@agents-sim.xyz \
+    -J admin@cs_entrypoint \
     -N admin

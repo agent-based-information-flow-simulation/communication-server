@@ -1,9 +1,9 @@
 admins = [
-    'admin@agents-sim.xyz'
+    'admin@cs_entrypoint'
 ]
 'config-type' = 'default'
 debug = [ 'server' ]
-'default-virtual-host' = 'agents-sim.xyz'
+'default-virtual-host' = 'cs_entrypoint'
 dataSource () {
     default () {
         uri = 'jdbc:postgresql://db/tigasedb?user=admin&password=admin&useSSL=false'
