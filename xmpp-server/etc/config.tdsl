@@ -1,0 +1,38 @@
+admins = [
+    'admin@cs_entrypoint'
+]
+'config-type' = 'default'
+debug = [ 'server' ]
+'default-virtual-host' = 'cs_entrypoint'
+dataSource () {
+    default () {
+        uri = 'jdbc:postgresql://db/tigasedb?user=admin&password=admin&useSSL=false'
+        'pool-size' = '20'
+    }
+}
+bosh (active: false) {}
+http () {
+    setup () {
+        'admin-password' = 'admin'
+        'admin-user' = 'admin'
+    }
+}
+'message-archive' (active: false) {}
+muc (active: false) {}
+pubsub (active: false) {
+    trusted = [ 'http@{clusterNode}' ]
+}
+s2s (active: false) {}
+'sess-man' () {
+    'message-archive-xep-0136' (active: false) {}
+    'message-carbons' (active: false) {}
+    pep (active: false) {}
+    'spam-filter' (active: false) {}
+    'urn:xmpp:csi:0' (active: false) {}
+    'urn:xmpp:mam:1' (active: false) {}
+    'urn:xmpp:push:0' (active: false) {}
+}
+ws2s (active: false) {}
+
+'cluster-mode' = true
+'hardened-mode' = relaxed

@@ -1,7 +1,0 @@
-tigase-server*
-docker-server*
-bzm*
-_run*
-_publish*
-docker-compose/xmpp-server/setup
-kubernetes/xmpp-server/setup

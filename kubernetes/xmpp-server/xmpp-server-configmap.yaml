@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: xmpp-server-configmap
-data:
-  xmpp-server-url: xmpp-server
-  db-pool-size: "20"
-  virtual-host: localhost
-  max-cluster-nodes: "100"
