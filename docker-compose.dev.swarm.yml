@@ -85,6 +85,20 @@ services:
           cpus: "8"
           memory: "8G"
     environment:
+      - ADMIN_JID=admin@cs_entrypoint
+      - ADMIN_PASSWORD=admin
+      - DB_HOST=db
+      - DB_NAME=tigasedb
+      - DB_TYPE=postgresql
+      - DB_USER_NAME=admin
+      - DB_USER_PASSWORD=admin
+      - DB_POOL_SIZE=20
+      - DB_ROOT_USER_NAME=postgres
+      - DB_ROOT_USER_PASSWORD=postgres
+      - DEFAULT_VIRTUAL_HOST=cs_entrypoint
+      - ENTRYPOINT_REGISTRATION_MAX_RETRIES=100
+      - ENTRYPOINT_REGISTRATION_USER_NAME=admin
+      - ENTRYPOINT_REGISTRATION_USER_PASSWORD=admin
       - WAIT_FOR_DB_ADDRESS=db:5432
       - WAIT_FOR_ENTRYPOINT_ADDRESS=entrypoint:5555
     image: 127.0.0.1:5000/communication-server-xmpp-server

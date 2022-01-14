@@ -1,20 +1,31 @@
+# env variables:
+# - ADMIN_JID
+# - ADMIN_PASSWORD
+# - DB_HOST
+# - DB_NAME
+# - DB_TYPE
+# - DB_USER_NAME
+# - DB_USER_PASSWORD
+# - DB_POOL_SIZE
+# - DEFAULT_VIRTUAL_HOST
+
 admins = [
-    'admin@cs_entrypoint'
+    env('ADMIN_JID')
 ]
 'config-type' = 'default'
 debug = [ 'server' ]
-'default-virtual-host' = 'cs_entrypoint'
+'default-virtual-host' = env('DEFAULT_VIRTUAL_HOST')
 dataSource () {
     default () {
-        uri = 'jdbc:postgresql://db/tigasedb?user=admin&password=admin&useSSL=false'
-        'pool-size' = '20'
+        uri = 'jdbc:' + env('DB_TYPE') + '://' + env('DB_HOST') + '/' + env('DB_NAME') + '?user=' + env('DB_USER_NAME') + '&password=' + env('DB_USER_PASSWORD') + '&useSSL=false'
+        'pool-size' = env('DB_POOL_SIZE')
     }
 }
 bosh (active: false) {}
 http () {
     setup () {
-        'admin-password' = 'admin'
-        'admin-user' = 'admin'
+        'admin-password' = env('DB_USER_NAME')
+        'admin-user' = env('DB_USER_PASSWORD')
     }
 }
 'message-archive' (active: false) {}
@@ -33,6 +44,5 @@ s2s (active: false) {}
     'urn:xmpp:push:0' (active: false) {}
 }
 ws2s (active: false) {}
-
 'cluster-mode' = true
 'hardened-mode' = relaxed
