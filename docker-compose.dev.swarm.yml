@@ -84,6 +84,9 @@ services:
         reservations:
           cpus: "8"
           memory: "8G"
+    environment:
+      - WAIT_FOR_DB_ADDRESS=db:5432
+      - WAIT_FOR_ENTRYPOINT_ADDRESS=entrypoint:5555
     image: 127.0.0.1:5000/communication-server-xmpp-server
     networks:
       - db-net
