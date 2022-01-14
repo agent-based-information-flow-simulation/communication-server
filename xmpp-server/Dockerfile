@@ -17,4 +17,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY . /tigase/
 
-ENTRYPOINT [ "/tigase/scripts/run.sh" ]
+ENTRYPOINT [ "/tigase/startup_scripts/run.sh" ]
