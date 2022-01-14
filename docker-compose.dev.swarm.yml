@@ -36,14 +36,6 @@ services:
       - "max_parallel_workers=4"
       - "-c"
       - "max_parallel_maintenance_workers=2"
-    deploy:
-      resources:
-        limits:
-          cpus: "4"
-          memory: "4G"
-        reservations:
-          cpus: "1"
-          memory: "512M"
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -56,14 +48,6 @@ services:
 
   entrypoint:
     build: ./entrypoint
-    deploy:
-      resources:
-        limits:
-          cpus: "4"
-          memory: "4G"
-        reservations:
-          cpus: "2"
-          memory: "256M"
     image: 127.0.0.1:5000/communication-server-entrypoint
     networks:
       - entrypoint-net
@@ -76,14 +60,6 @@ services:
 
   xmpp-server:
     build: ./xmpp-server
-    deploy:
-      resources:
-        limits:
-          cpus: "8"
-          memory: "8G"
-        reservations:
-          cpus: "8"
-          memory: "8G"
     environment:
       - ADMIN_JID=admin@cs_entrypoint
       - ADMIN_PASSWORD=admin
