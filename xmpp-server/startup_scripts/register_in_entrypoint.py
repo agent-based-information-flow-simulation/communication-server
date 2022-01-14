@@ -1,9 +1,3 @@
-# env variables:
-# - ENTRYPOINT_REGISTRATION_MAX_RETRIES
-# - ENTRYPOINT_REGISTRATION_USER_NAME
-# - ENTRYPOINT_REGISTRATION_USER_PASSWORD
-
-import os
 import sys
 import time
 from pprint import pprint
@@ -13,12 +7,12 @@ import requests as r
 PROXY_HOSTNAME_WITH_PORT = sys.argv[1]
 URL = f"http://{PROXY_HOSTNAME_WITH_PORT}/v2"
 GET_VERSION_URL = f"{URL}/services/haproxy/configuration/backends"
-ENDPOINT_USER = os.environ['ENTRYPOINT_REGISTRATION_USER_NAME']
-ENDPOINT_PASSWORD = os.environ['ENTRYPOINT_REGISTRATION_USER_PASSWORD']
-NUM_MAX_RETRIES = int(os.environ['ENTRYPOINT_REGISTRATION_MAX_RETRIES'])
-IMAGE_HOSTNAME = sys.argv[2]
-BACKEND_NAME = sys.argv[3]
-BACKEND_PORT = int(sys.argv[4])
+ENDPOINT_USER = sys.argv[2]
+ENDPOINT_PASSWORD = sys.argv[3]
+NUM_MAX_RETRIES = int(sys.argv[4])
+IMAGE_HOSTNAME = sys.argv[5]
+BACKEND_NAME = sys.argv[6]
+BACKEND_PORT = int(sys.argv[7])
 
 
 def register(backend_name, port):
