@@ -63,7 +63,7 @@ services:
       - API_PORT=5555
       - LISTEN_ADMIN_PANEL_PORT=8080
       - LISTEN_XMPP_PORT=5222
-    image: 127.0.0.1:5000/communication-server-entrypoint
+    image: 127.0.0.1:5000/cs-entrypoint
     networks:
       - entrypoint-net
       - external-sre-cs-net
@@ -96,7 +96,7 @@ services:
       - ENTRYPOINT_REGISTRATION_USER_PASSWORD=admin
       - WAIT_FOR_DB_ADDRESS=db:5432
       - WAIT_FOR_ENTRYPOINT_ADDRESS=entrypoint:5555
-    image: 127.0.0.1:5000/communication-server-xmpp-server
+    image: 127.0.0.1:5000/cs-xmpp-server
     networks:
       - db-net
       - entrypoint-net

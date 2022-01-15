@@ -68,7 +68,7 @@ services:
         reservations:
           cpus: "1"
           memory: "256M"
-    image: madpeh/communcation-server-entrypoint
+    image: madpeh/cs-entrypoint
     networks:
       - entrypoint-net
       - external-sre-cs-net
@@ -110,7 +110,7 @@ services:
         reservations:
           cpus: "8"
           memory: "8G"
-    image: madpeh/communication-server-xmpp-server
+    image: madpeh/cs-xmpp-server
     networks:
       - db-net
       - entrypoint-net
