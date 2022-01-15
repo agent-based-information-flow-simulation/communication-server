@@ -46,6 +46,17 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
+  db-gui:
+    image: dpage/pgadmin4:6.4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    networks:
+      - db-net
+    ports:
+      - "5433:80"
+
   entrypoint:
     build: ./entrypoint
     image: 127.0.0.1:5000/communication-server-entrypoint
