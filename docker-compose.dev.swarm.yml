@@ -57,12 +57,17 @@ services:
 
   entrypoint:
     build: ./entrypoint
+    environment:
+      - API_PORT=5555
+      - LISTEN_ADMIN_PANEL_PORT=8080
+      - LISTEN_XMPP_PORT=5222
     image: 127.0.0.1:5000/communication-server-entrypoint
     networks:
       - entrypoint-net
       - external-sre-cs-net
     ports:
       - "5222:5222"
+      - "5556:5555"
       - "8080:8080"
 
   xmpp-server:
