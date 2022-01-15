@@ -56,6 +56,10 @@ services:
 
   entrypoint:
     build: ./entrypoint
+    environment:
+      - API_PORT=5555
+      - LISTEN_ADMIN_PANEL_PORT=8080
+      - LISTEN_XMPP_PORT=5222
     deploy:
       resources:
         limits:
@@ -76,6 +80,28 @@ services:
 
   xmpp-server:
     build: ./xmpp-server
+    environment:
+      - ADMIN_JID=admin@cs_entrypoint
+      - ADMIN_PASSWORD=admin
+      - DB_HOST=db
+      - DB_NAME=tigasedb
+      - DB_TYPE=postgresql
+      - DB_USER_NAME=admin
+      - DB_USER_PASSWORD=admin
+      - DB_POOL_SIZE=20
+      - DB_ROOT_USER_NAME=postgres
+      - DB_ROOT_USER_PASSWORD=postgres
+      - DEFAULT_VIRTUAL_HOST=cs_entrypoint
+      - ENTRYPOINT_REGISTRATION_ADDRESS=entrypoint:5555
+      - ENTRYPOINT_REGISTRATION_BACKEND_ADMIN_PANEL_NAME=admin_panel
+      - ENTRYPOINT_REGISTRATION_BACKEND_ADMIN_PANEL_PORT=8080
+      - ENTRYPOINT_REGISTRATION_BACKEND_XMPP_NAME=xmpp
+      - ENTRYPOINT_REGISTRATION_BACKEND_XMPP_PORT=5222
+      - ENTRYPOINT_REGISTRATION_MAX_RETRIES=100
+      - ENTRYPOINT_REGISTRATION_USER_NAME=admin
+      - ENTRYPOINT_REGISTRATION_USER_PASSWORD=admin
+      - WAIT_FOR_DB_ADDRESS=db:5432
+      - WAIT_FOR_ENTRYPOINT_ADDRESS=entrypoint:5555
     deploy:
       resources:
         limits:
