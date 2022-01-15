@@ -35,10 +35,14 @@ sudo apt update && sudo apt install git -y
 git clone https://github.com/agent-based-information-flow-simulation/communication-server.git
 
 # enter the docker swarm directory and run
-server.sh init
+./server.sh init
 
-# run the output of the command on the worker nodes
-docker swarm join --token TOKEN ADDR:PORT
+# save the token and the ip:port from the output
+# and run the command on worker nodes
+./server.sh join TOKEN ADDR:PORT
+
+# create shared networks
+./server.sh network
 
 # start the server
-server.sh start
+./server.sh start
