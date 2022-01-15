@@ -22,12 +22,7 @@ dataSource () {
     }
 }
 bosh (active: false) {}
-http () {
-    setup () {
-        'admin-password' = env('DB_USER_NAME')
-        'admin-user' = env('DB_USER_PASSWORD')
-    }
-}
+http () {}
 'message-archive' (active: false) {}
 muc (active: false) {}
 pubsub (active: false) {
