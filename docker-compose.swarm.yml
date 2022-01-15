@@ -71,6 +71,7 @@ services:
     image: madpeh/cs-entrypoint
     networks:
       - entrypoint-net
+      - external-benchmark-net
       - external-sre-cs-net
     ports:
       - "5222:5222"
@@ -118,6 +119,9 @@ services:
 networks:
   db-net:
   entrypoint-net:
+  external-benchmark-net:
+    external: true
+    name: cs-benchmark
   external-sre-cs-net:
     external: true
     name: sre-cs

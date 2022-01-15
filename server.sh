@@ -45,6 +45,12 @@ function network() {
     else
         echo "[simulation run environment <-> communication server] failed to create"
     fi
+
+    if docker network create --driver overlay --attachable cs-benchmark; then
+        echo "[communication server <-> benchmark] created"
+    else
+        echo "[communication server <-> benchmark] failed to create"
+    fi
 }
 
 function start() {
@@ -146,8 +152,9 @@ function benchmark() {
     case "${1}" in
         start) docker run \
                 -d \
+                -p 8091:8091 \
                 --rm \
-                --network host \
+                --network cs-benchmark \
                 --name tsung-benchmark \
                 madpeh/cs-tsung-benchmark && \
                 echo "benchmark is running on http://localhost:8091"

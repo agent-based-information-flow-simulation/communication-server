@@ -66,6 +66,7 @@ services:
     image: 127.0.0.1:5000/cs-entrypoint
     networks:
       - entrypoint-net
+      - external-benchmark-net
       - external-sre-cs-net
     ports:
       - "5222:5222"
@@ -104,6 +105,9 @@ services:
 networks:
   db-net:
   entrypoint-net:
+  external-benchmark-net:
+    external: true
+    name: cs-benchmark
   external-sre-cs-net:
     external: true
     name: sre-cs
