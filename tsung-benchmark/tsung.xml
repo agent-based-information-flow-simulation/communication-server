@@ -8,7 +8,7 @@
 
     <servers>
         <!-- connect to the load balancer -->
-        <server host="agents-sim.xyz" port="5222" type="tcp"></server>
+        <server host="cs_entrypoint" port="5222" type="tcp"></server>
     </servers>
 
     <load>
@@ -24,7 +24,7 @@
         <option name="seed" value="42"/>
         <option type="ts_jabber" name="global_number" value="8000"></option>
         <option type="ts_jabber" name="userid_max" value="100000"></option>
-        <option type="ts_jabber" name="domain" value="agents-sim.xyz"></option>
+        <option type="ts_jabber" name="domain" value="cs_entrypoint"></option>
         <option type="ts_jabber" name="username" value="benchmark_user"></option>
         <option type="ts_jabber" name="passwd" value="password"></option>
     </options>
