@@ -29,9 +29,9 @@ Use the `server.sh` utility script.
 
 After starting the `.dev.yml` compose file, the server in accessible on localhost. </br>
 Host port mapping: </br>
-* port `5222` - xmpp server
+* port `5222` - xmpp server (via entrypoint)
 * port `5432` - db
 * port `5433` - db gui
 * port `5556` - entrypoint api
-* port `8080` - xmpp server admin panel
+* port `8080` - xmpp server admin panel (via entrypoint)
 * port `8081` - benchmark
