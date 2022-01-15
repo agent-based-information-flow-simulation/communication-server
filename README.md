@@ -34,3 +34,4 @@ Host port mapping: </br>
 * port `5433` - db gui
 * port `5556` - entrypoint api
 * port `8080` - xmpp server admin panel
+* port `8081` - benchmark
