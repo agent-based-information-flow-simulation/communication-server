@@ -43,6 +43,8 @@ services:
     image: postgres:13.5-alpine3.14
     networks:
       - db-net
+    ports:
+      - "5432:5432"
 
   db-gui:
     image: dpage/pgadmin4:6.4
