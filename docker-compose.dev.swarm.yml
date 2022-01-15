@@ -55,8 +55,6 @@ services:
     ports:
       - "5222:5222"
       - "8080:8080"
-    volumes:
-      - entrypoint-data:/usr/local/etc/haproxy
 
   xmpp-server:
     build: ./xmpp-server
@@ -96,4 +94,3 @@ networks:
 
 volumes:
   db-data:
-  entrypoint-data:
