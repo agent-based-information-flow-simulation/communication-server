@@ -37,7 +37,9 @@ def register(backend_name, port):
             },
         )
         if response.status_code == 202:
-            print(f"Server {server_name} added to haproxy backend {backend_name}")
+            print(
+                f"Server {server_name} (port {port}) added to haproxy backend {backend_name}"
+            )
             return
         elif (
             f"Server {server_name} already exists in backend"
