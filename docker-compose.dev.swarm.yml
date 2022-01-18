@@ -70,7 +70,7 @@ services:
       - external-sre-cs-net
     ports:
       - "5222:5222"
-      - "5556:5555"
+      - "5555:5555"
       - "8080:8080"
 
   xmpp-server:
