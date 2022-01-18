@@ -32,6 +32,6 @@ Host port mapping: </br>
 * port `5222` - xmpp server (via entrypoint)
 * port `5432` - db
 * port `5433` - db gui
-* port `5556` - entrypoint api
+* port `5555` - entrypoint api
 * port `8080` - xmpp server admin panel (via entrypoint)
 * port `8081` - benchmark
