@@ -57,9 +57,9 @@ services:
   entrypoint:
     build: ./entrypoint
     environment:
+      - ADMIN_PANEL_LISTEN_PORT=8080
       - API_PORT=5555
-      - LISTEN_ADMIN_PANEL_PORT=8080
-      - LISTEN_XMPP_PORT=5222
+      - XMPP_LISTEN_PORT=5222
     deploy:
       resources:
         limits:
