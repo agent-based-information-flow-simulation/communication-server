@@ -75,7 +75,6 @@ function start() {
 
     if docker stack deploy -c ./"$COMPOSE_FILE" cs; then
         if [ "$N" -gt "1" ]; then scale "$N"; fi
-        echo "XMPP can be accessed on port 5222"
         echo "Admin panel can be accessed on port 8080"
     else
         echo ""
