@@ -10,6 +10,7 @@ function usage() {
     echo "       stop: stop the server"
     echo "       clean: stop the server and remove all docker data"
     echo "       stats: print stats from all services"
+    echo "       services: print all services"
     echo "       publish [-d: dev mode (REQUIRES SWARM CLUSTER)]: publish the images to a registry"
     echo "       benchmark {start|stop|publish}: start/stop/publish benchmark"
     exit 1
