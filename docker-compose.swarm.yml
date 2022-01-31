@@ -73,8 +73,6 @@ services:
       - entrypoint-net
       - external-benchmark-net
       - external-sre-cs-net
-    ports:
-      - "8080:8080"
     volumes:
       - entrypoint-data:/usr/local/etc/haproxy
 
