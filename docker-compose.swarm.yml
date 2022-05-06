@@ -68,7 +68,7 @@ services:
         reservations:
           cpus: "1"
           memory: "256M"
-    image: madpeh/cs-entrypoint
+    image: "madpeh/cs-entrypoint:${VERSION}"
     networks:
       - entrypoint-net
       - external-benchmark-net
@@ -108,7 +108,7 @@ services:
         reservations:
           cpus: "1"
           memory: "1G"
-    image: madpeh/cs-xmpp-server
+    image: "madpeh/cs-xmpp-server:${VERSION}"
     networks:
       - db-net
       - entrypoint-net
