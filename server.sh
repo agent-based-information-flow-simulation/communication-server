@@ -74,8 +74,10 @@ function start() {
         COMPOSE_FILE=docker-compose.swarm.yml
     fi
 
-    if docker stack deploy -c ./"$COMPOSE_FILE" cs; then
+    source .version
+    if env VERSION="${VERSION}" docker stack deploy -c ./"$COMPOSE_FILE" cs; then
         if [ "$N" -gt "1" ]; then scale "$N"; fi
+        echo "Version: ${VERSION}"
         echo "OK"
     else
         echo ""
@@ -140,11 +142,29 @@ function publish() {
         else
             echo "registry already exists"
         fi
-        docker-compose -f docker-compose.dev.swarm.yml build --parallel
+        docker-compose -f docker-compose.dev.swarm.yml build --parallel && \
         docker-compose -f docker-compose.dev.swarm.yml push
     else
-        docker-compose -f docker-compose.swarm.yml build --parallel
-        docker-compose -f docker-compose.swarm.yml push
+        source .version
+        read -p "Publish version ${VERSION} to registry? [y/n] " -r VERSION_ANSWER
+        read -p "Publish version latest to registry? [y/n] " -r LATEST_ANSWER
+
+        if [ "$VERSION_ANSWER" != "y" ] && [ "$LATEST_ANSWER" != "y" ]; then
+            echo "aborting"
+            exit 1
+        fi
+
+        if [ "$VERSION_ANSWER" == "y" ]; then
+            env VERSION="${VERSION}" docker-compose -f docker-compose.swarm.yml build --parallel && \
+            env VERSION="${VERSION}" docker-compose -f docker-compose.swarm.yml push && \
+            echo "published version ${VERSION}"
+        fi
+
+        if [ "$LATEST_ANSWER" == "y" ]; then
+            env VERSION=latest docker-compose -f docker-compose.swarm.yml build --parallel && \
+            env VERSION=latest docker-compose -f docker-compose.swarm.yml push && \
+            echo "published version latest"
+        fi
     fi
 }
 
