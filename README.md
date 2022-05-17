@@ -10,7 +10,9 @@
 
 ## About <a name = "about"></a>
 
-Cluster of servers used for XMPP communication. The Communication Server is a part of the [Agents Assembly](https://agents-assembly.com) ecosystem. Other applications are:
+Cluster of servers used for XMPP communication. 
+The Communication Server is a part of the [Agents Assembly](https://agents-assembly.com) ecosystem.
+Other applications are:
 - [Local Interface](https://github.com/agent-based-information-flow-simulation/local-interface) - GUI for simulation definition, management, and analysis.
 - [Simulation Run Environment](https://github.com/agent-based-information-flow-simulation/simulation-run-environment) - environment for running scalable agent-based simulations.
 - [Agents Assembly Translator](https://github.com/agent-based-information-flow-simulation/agents-assembly-translator) - translator for Agents Assembly code.
