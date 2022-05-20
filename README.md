@@ -92,6 +92,8 @@ It is implemented using Haproxy to provide the load balancing functionality.
 So, the server with the least amount of connections receives the incoming connection.
 Additionally, it uses the Dataplane API included in the Haproxy distribution to enable the configuration on the runtime without the need to reload the service.
 
+[Docker Hub](https://hub.docker.com/r/madpeh/cs-entrypoint)
+
 Environment variables:
 * `ADMIN_PANEL_LISTEN_PORT` - XMPP server admin panel listen port (i.e., 8080)
 * `API_PORT` - [Data Plane API](https://www.haproxy.com/documentation/hapee/latest/api/data-plane-api/) listen port (i.e., 5555)
@@ -103,6 +105,8 @@ Host port mapping (dev only):
 ### Tsung benchmark <a name = "tsung-benchmark"></a>
 The service is a benchmark utility to test the cluster of servers under load.
 
+[Docker Hub](https://hub.docker.com/r/madpeh/cs-tsung-benchmark)
+
 Host port mapping (dev only):
 * port `8081`
 
@@ -111,6 +115,8 @@ The servers are instances of Tigase.
 To increase performance, they are configured to provide the minimum required functionalities.
 The first one is to register agents in the database, and the second one is to exchange the messages sent between the agents. The servers are set to operate in cluster mode.
 After starting, each instance communicates with the proxy service via its API to create a new entry about the server in the proxy configuration file.
+
+[Docker Hub](https://hub.docker.com/r/madpeh/cs-xmpp-server)
 
 Environment variables:
 * `ADMIN_JID` - administrator JID (i.e., admin@cs_entrypoint)
