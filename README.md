@@ -16,6 +16,7 @@ Other applications are:
 - [Local Interface](https://github.com/agent-based-information-flow-simulation/local-interface) - GUI for simulation definition, management, and analysis.
 - [Simulation Run Environment](https://github.com/agent-based-information-flow-simulation/simulation-run-environment) - environment for running scalable agent-based simulations.
 - [Agents Assembly Translator](https://github.com/agent-based-information-flow-simulation/agents-assembly-translator) - translator for Agents Assembly code.
+- [Local Development Environment](https://github.com/agent-based-information-flow-simulation/local-development-environment) - simple environment for running agent-based simulations.
 
 ## Getting Started <a name = "getting_started"></a>
 
