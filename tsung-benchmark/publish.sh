@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build ./tsung-benchmark -t madpeh/cs-tsung-benchmark && \
-docker push madpeh/cs-tsung-benchmark
+docker build ./tsung-benchmark -t aasm/cs-tsung-benchmark && \
+docker push aasm/cs-tsung-benchmark

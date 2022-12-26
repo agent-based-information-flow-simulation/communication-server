@@ -176,7 +176,7 @@ function benchmark() {
                 --rm \
                 --network cs-benchmark \
                 --name tsung-benchmark \
-                madpeh/cs-tsung-benchmark && \
+                aasm/cs-tsung-benchmark && \
                 echo "benchmark is running on http://localhost:8091"
             ;;
 
