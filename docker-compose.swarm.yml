@@ -74,7 +74,7 @@ services:
       - external-benchmark-net
       - external-sre-cs-net
     volumes:
-      - entrypoint-data:/usr/local/etc/haproxy
+      - entrypoint-data:/usr/local/etc
 
   xmpp-server:
     build: ./xmpp-server
